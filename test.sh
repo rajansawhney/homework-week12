@@ -5,8 +5,6 @@ echo "*****"
 echo
 echo "Winner of the election..."
 output_election=$(./election < test/input_election.txt)
-# echo ${output_election} | tr -d '\t' | tr -d '\n'
-# output_election=${output_election//[[:space:]]/}
 echo $output_election
 
 expected_output_election="
