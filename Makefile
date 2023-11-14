@@ -1,13 +1,10 @@
 CC = g++
 
-person: person.cpp
-	g++ person.cpp -o person
-
-car: car.cpp
-	g++ car.cpp -o car
+election: election.cpp
+	g++ election.cpp -o election
 
 clean:
-	rm person car
+	rm election 
 
-test: person car 
+test: election  
 	bash test.sh

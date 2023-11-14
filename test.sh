@@ -3,12 +3,19 @@ echo
 
 echo "*****"
 echo
-echo "Person..."
-output_person=$(./person < test/input_person.txt)
-echo $output_person
-expected_output_person="Name: Minerva
-Age: 55
-Country: Scotland"| tr -d '\r'
+echo "Winner of the election..."
+output_election=$(./election < test/input_election.txt)
+# echo ${output_election} | tr -d '\t' | tr -d '\n'
+# output_election=${output_election//[[:space:]]/}
+echo $output_election
+
+expected_output_election="
+Peter                   30              18%
+Roy                     20              12%
+Ali                     60              37%
+Hales                   40              25%
+John                    10              6%
+The winner is Ali"
 
 if [ $? -eq 0 ] ; then
   echo "Pass: Program exited zero"
@@ -18,35 +25,12 @@ else
 fi
 
 
-if [[ $output_person == *$expected_output_person* ]] ; then
+if [[ ${output_election//[[:space:]]/} == *${expected_output_election//[[:space:]]/}* ]] ; then
   echo "Pass: Output is correct"
 else
-  echo "Expected '$expected_output_person' but got: $output_person"
-  exit 1
-fi
-
-echo "*****"
-echo
-echo "Car..."
-output_car=$(./car < test/input_car.txt)
-echo $output_car
-
-if [ $? -eq 0 ] ; then
-  echo "Pass: Program exited zero"
-else
-  echo "Fail: Program did not exit zero"
-  exit 1
-fi
-
-expected_output_car="Company: LandRover
-Model: Defender
-Year: 2000"| tr -d '\r'
-
-
-if [[ $output_car == *$expected_output_car* ]] ; then
-  echo "Pass: Output is correct"
-else
-  echo "Expected '$expected_output_car' but got: $output_car"
+  echo -e "Expected = $expected_output_election"
+  echo -e "but got:"
+  echo -e "$output_election"
   exit 1
 fi
 

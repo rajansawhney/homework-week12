@@ -1,0 +1,10 @@
+Peter
+30
+Roy
+20
+Ali
+60
+Hales
+40
+John
+10
